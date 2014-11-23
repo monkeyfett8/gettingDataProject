@@ -44,7 +44,7 @@ There are 6 activity types under the activityType variable:
 * STANDING
 * LAYING
 
-### All Variable headers in order
+### All Variable Headers In Order
 * subjectNumber             
 * activityType              
 * tBodyAcc_mean_X           
