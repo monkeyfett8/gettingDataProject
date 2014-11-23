@@ -1,8 +1,6 @@
 # This dataset shows cleaned and averaged data from the Human Activity Recognition Using Smartphones Dataset.
 
-This dataset shows the reduced data for a set of data taken from smartphone accelerometers across 30 subjects ages 19-48 years of age and each performing 6 different tasks from walking to lying down.  
-
-The script run_analysis.R takes data from the original source and transforms and simplify the data to the tables presented here.
+This dataset shows the reduced data for a set of data taken from smartphone accelerometers across 30 subjects ages 19-48 years of age and each performing 6 different tasks from walking to lying down. Measurments were taken with a Samsung Galaxy S II smartphone.  Units are in gravitational units (g).
 
 # Run Script
 ### run_analysis.R
