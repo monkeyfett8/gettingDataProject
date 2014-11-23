@@ -3,15 +3,48 @@ The averagedDataTable.txt file shows a reduced set of data showing all participa
 
 The fullDataTable.txt is the unaverages source data for averagedDataTable.txt if required.  Each observation in the averaged data set is the average of 79 individual data observations from the full data table.  
 
-## Dataset Variable Columns
-Variables are shown in order for dataset as columns listed at the end of this document.
-Each row is a single subject and activity.
-Data is separated by t and f categories, denoted by preceeding letters
-Following this category is the measurment type, for example GravityAcc
-The third part of the notation, separated by an underscore "_" is the data preprocessor that was applied, either mean (_mean) or standard deviation (_std).
-Finally some data is shown for an axis X,Y,orZ as denoted by the final letter following a second underscore.  Not all variables use an axis and the axis is omitted.
+## run_analysis.R process
+*Step 1: The script determines if data alreaday exists and if not, downloads the data from the source.
+*Step 2: The script loads the labels for the various activities from a text file activity_labels.txt
+*Step 3: The variable header names are read from features.txt.
+*Step 4: The training data is pulled for the subject numbers, raw data, and the activity state at each observation
+*Step 5: The variable header labels (from step 2) are applied to the dataset previously from step 4.
+*Step 6: The activity type is converted from a number code to the text name of the activity.
+*Step 7: The 3 sets of data from the subject, activity type, and raw data are combined into a single table.
+*Step 8: The process of step 4 through 7 is repeated for the test data which follows the same format.
+*Step 9: The test and training data are combined together into a single table.
+*Step 10: Since we are only interested in mean and standard deviations of each variable, all other variables are removed by column with associated numerical data.
+*Step 11: The data labels are then cleaned to allow R to import and export the data set effectively and help the data be read easier by a human.
+*Step 12: The table is then writen out in raw form.  This is not required, but may be helpful to some users.
+*Step 13: The table is averaged by each subject and activity. That is, for each of the 30 subjects, the various readings (79 each) for each sactivity type are averaged.  This leaves only 6 data points for each subject, one for each activity type.
+*Step 14: This averaged data table is then saved to the user to operate as needed.
 
+## Dataset Variable Setup
+Variables are shown in order for dataset as columns listed at the end of this document. Each row is a single subject and activity. Data is separated by time and frequency categories, denoted by preceeding letters "t" and "f" respectively. Following this category is the measurment type, for example GravityAcc The third part of the notation, separated by an underscore "_" is the data preprocessor that was applied, either mean (_mean) or standard deviation (_std). Finally some data is shown for an axis X,Y,orZ as denoted by the final letter following a second underscore.  Not all variables use an axis and the axis is omitted.
 
+### Data variable data detail
+Time domain data (prefix "t") - captured at 50Hz rate filtered at 20 Hz corner frequency to remove noise.
+
+Frequency domain data (prefix "f") - is time domain data filtered with a butterworth filter with a corner frequency of 0.3 Hz.
+
+Acceleration and Jerk signals are calculated using Euclidean norms. (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag)
+
+Fast Fourier Transform (FFT) was applied to signals. (fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag)
+
+Variables are further simplified with two methods, mean (denoted _mean) and standard deviation (_std) for each raw signal.
+
+_X,_Y,_Z denotes the axis of the measurment.
+
+### Activity Types
+There are 6 activity types under the activityType variable: 
+WALKING
+WALKING_UPSTAIRS
+WALKING_DOWNSTAIRS
+SITTING
+STANDING
+LAYING
+
+### All Variable headers in order
 subjectNumber             
 activityType              
 tBodyAcc_mean_X           
@@ -78,5 +111,5 @@ fBodyBodyAccJerkMag_mean
 fBodyBodyAccJerkMag_std  
 fBodyBodyGyroMag_mean     
 fBodyBodyGyroMag_std      
-fBodyBodyGyroJerkMag_mean 
+fBodyBodyGyroJerkMag_mean
 fBodyBodyGyroJerkMag_std 
