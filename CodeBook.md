@@ -45,8 +45,8 @@ There are 6 activity types under the activityType variable:
 * LAYING
 
 ### All Variable headers in order
-subjectNumber             
-activityType              
+* subjectNumber             
+* activityType              
 * tBodyAcc_mean_X           
 * tBodyAcc_mean_Y          
 * tBodyAcc_mean_Z           
